@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartotrezor.Back", "Kartotrezor.Back/Kartotrezor.Back.csproj", "{B41F4F24-7AF7-467E-B53A-6CBC9F0307F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartotrezor", "Kartotrezor\Kartotrezor.csproj", "{38D4FCBC-DE64-45DB-AAE8-B98B462A339A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartotest", "Kartotest\Kartotest.csproj", "{BFDFCFB7-E8D0-46B5-916E-C87C7337A242}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B41F4F24-7AF7-467E-B53A-6CBC9F0307F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B41F4F24-7AF7-467E-B53A-6CBC9F0307F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B41F4F24-7AF7-467E-B53A-6CBC9F0307F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B41F4F24-7AF7-467E-B53A-6CBC9F0307F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D4FCBC-DE64-45DB-AAE8-B98B462A339A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D4FCBC-DE64-45DB-AAE8-B98B462A339A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D4FCBC-DE64-45DB-AAE8-B98B462A339A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D4FCBC-DE64-45DB-AAE8-B98B462A339A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFDFCFB7-E8D0-46B5-916E-C87C7337A242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFDFCFB7-E8D0-46B5-916E-C87C7337A242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFDFCFB7-E8D0-46B5-916E-C87C7337A242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFDFCFB7-E8D0-46B5-916E-C87C7337A242}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96BE5984-D7C5-45C4-80BF-02B3B9184AE0}
+	EndGlobalSection
+EndGlobal
