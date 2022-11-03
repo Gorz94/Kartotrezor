@@ -11,7 +11,7 @@ namespace Kartotrezor.Utils
                 "N" => Direction.N,
                 "E" => Direction.E,
                 "W" => Direction.W,
-                _ => throw new ArgumentException($"{s} is not a valid {typeof(Direction).Name}");
+                _ => throw new ArgumentException($"{s} is not a valid {typeof(Direction).Name}")
             };
     }
 }
