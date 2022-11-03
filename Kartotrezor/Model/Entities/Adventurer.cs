@@ -16,4 +16,6 @@
     }
 
     public enum Direction { N = 0, S, E, W };
+
+    public enum Turn { D = 0, G };
 }
