@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Kartotrezor.Executor
 {
-    public class MapExecutor
+    public class CommandParser
     {
-        public Map ExecuteMap(Command command, Map map = null)
+        public Command[] ParseCommands(string[] lines)
         {
             return null;
         }

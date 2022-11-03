@@ -9,6 +9,11 @@ namespace Kartotrezor.Model
 
     public class InitMapCommand : Command
     {
+        public InitMapCommand(int w, int h)
+        {
+            
+        }
+
         public int Width { get; set; }
 
         public int Height { get; set; }
@@ -24,6 +29,15 @@ namespace Kartotrezor.Model
 
     public class LevelCommand : Command
     {
+        public LevelCommand(Level level, int x, int y)
+        {
+            
+        }
+
+        public int X { get; set; }
+
+        public int Y { get; set; }
+
         public Level Level { get; set; }
 
         public override Map Execute(Map map)
@@ -34,6 +48,15 @@ namespace Kartotrezor.Model
 
     public class SetTreasureCommand : Command
     {
+        public SetTreasureCommand(int x, int y, int value)
+        {
+            
+        }
+
+        public int X { get; set; }
+
+        public int Y { get; set; }
+
         public Treasure Treasure { get; set; }
 
         public override Map Execute(Map map)
@@ -44,6 +67,11 @@ namespace Kartotrezor.Model
 
     public class InitPlayerCommand : Command
     {
+        public InitPlayerCommand(string playerName, Direction dir, int x, int y)
+        {
+            
+        }
+
         public string PlayerName { get; set; }
 
         public int X { set; get; }
@@ -58,6 +86,11 @@ namespace Kartotrezor.Model
 
     public class MovePlayerForwardCommand : Command
     {
+        public MovePlayerForwardCommand(string name)
+        {
+            
+        }
+
         public string PlayerName { get; set; }
 
         public override Map Execute(Map map)
@@ -68,6 +101,11 @@ namespace Kartotrezor.Model
 
     public class ChangePlayerDirectionCommand : Command
     {
+        public ChangePlayerDirectionCommand(string name, Direction dir)
+        {
+
+        }
+
         public string PlayerName { get; set; }
 
         public Direction Direction { get; set; }

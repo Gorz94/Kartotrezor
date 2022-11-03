@@ -2,6 +2,12 @@
 {
     public class Adventurer : Entity
     {
+        public Adventurer(string name, Direction direction)
+        {
+            Name = name;
+            Direction = direction;
+        }
+
         public Direction Direction { get; set; }
 
         public string Name { get; set; }
