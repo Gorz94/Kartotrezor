@@ -2,6 +2,7 @@
 using Kartotrezor.Executor;
 using Kartotrezor.Model;
 using Kartotrezor.Model.Entities;
+using System.Linq;
 using Xunit;
 
 namespace Kartotest.Tests.Parser
@@ -90,9 +91,9 @@ namespace Kartotest.Tests.Parser
                 new MovePlayerForwardCommand("Mehdi"),
                 new MovePlayerForwardCommand("Mehdi"),
                 new ChangePlayerDirectionCommand("Mehdi", Turn.G)
-            };
+            }.Cast<object>();
 
-            new CommandParser().ParseCommands(lines).Should().BeEquivalentTo(commands);
+            new CommandParser().ParseCommands(lines).Cast<object>().Should().BeEquivalentTo(commands);
         }
     }
 }
