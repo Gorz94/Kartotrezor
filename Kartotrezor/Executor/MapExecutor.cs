@@ -31,7 +31,9 @@ namespace Kartotrezor.Executor
 
         public static Map Execute(InitMapCommand command, Map map)
         {
-            return map;
+            if (map != null) throw new InvalidOperationException($"[{nameof(Execute)}] Map is already set.");
+
+            return new Map(command.Width, command.Height);
         }
 
         private static Map Execute(LevelCommand command, Map map)

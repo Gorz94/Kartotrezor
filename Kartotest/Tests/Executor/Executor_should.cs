@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Kartotrezor.Executor;
 using Kartotrezor.Model;
+using System;
 using System.Linq;
 using Xunit;
 
@@ -37,9 +38,7 @@ namespace Kartotest.Tests.Parser
                new InitMapCommand(w, h)
             };
 
-            var map = new MapExecutor().ExecuteMap(command);
-
-            map.Should().BeEquivalentTo(new Map(w, h) { Slots = Enumerable.Range(0, w * h).Select(_ => new MapSlot()).ToArray() });
+            Assert.Throws<InvalidOperationException>(() => new MapExecutor().ExecuteMap(command));
         }
     }
 }
