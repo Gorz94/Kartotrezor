@@ -9,7 +9,7 @@
             if (w <= 0 || h <= 0 || w > MAX_SIZE || h > MAX_SIZE) throw new ArgumentException($"Cannot create map with {w}x{h}");
             Width = w;
             Height = h;
-            Slots = Enumerable.Range(0, w * h).Select(_ => new MapSlot()).ToArray();
+            Slots = Enumerable.Range(0, w * h).Select(i => new MapSlot(i / w, i % h)).ToArray();
         }
 
         public int Width { get; set; }
@@ -23,8 +23,18 @@
 
     public class MapSlot
     {
+        public MapSlot(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
         public IEnumerable<Entity> Entities { get; set; } = Enumerable.Empty<Entity>();
 
         public Level Level { get; set; } = Level.Plain;
+
+        public int X { get; set; }
+
+        public int Y { get; set; }
     }
 }

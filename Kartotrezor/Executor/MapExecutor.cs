@@ -1,4 +1,6 @@
-﻿using Kartotrezor.Model;
+﻿using Kartotrezor.Entities;
+using Kartotrezor.Model;
+using Kartotrezor.Model.Entities;
 using Kartotrezor.Utils;
 using System;
 using System.Collections.Generic;
@@ -66,24 +68,62 @@ namespace Kartotrezor.Executor
         private static Map Execute(SetTreasureCommand command, Map map)
         {
             if (map == null) throw new ArgumentNullException(nameof(map));
+
+            var slot = map[command.X, command.Y];
+
+            if (slot.Entities.Any(e => e is Treasure)) throw new InvalidOperationException("There is already a treasure !");
+
+            map.AddTreasure(command.X, command.Y, command.Treasure.Count);
+            
             return map;
         }
 
         private static Map Execute(InitPlayerCommand command, Map map)
         {
             if (map == null) throw new ArgumentNullException(nameof(map));
+
+            var slot = map[command.X, command.Y];
+
+            if (slot.Entities.Any(e => e is Adventurer))
+                throw new InvalidOperationException("There is already a player !");
+            if (map.Slots.SelectMany(s => s.Entities).Any(e => e is Adventurer a && a.Name == command.PlayerName))
+                throw new InvalidOperationException($"{command.PlayerName} is already looking for the treasure ...");
+
+            map.AddPlayer(command.X, command.Y, command.PlayerName, command.Direction);
+
             return map;
         }
 
         private static Map Execute(MovePlayerForwardCommand command, Map map)
         {
             if (map == null) throw new ArgumentNullException(nameof(map));
+
+            var (player, x, y) = map.FindAdventurer(command.PlayerName);
+
+            if (player == null) throw new InvalidOperationException("Cannot move an inexisting player");
+
+            var nextPos = map.CalculateNextPos(x, y, player.Direction);
+
+            if (nextPos != (x, y))
+            {
+                // Il n'y a qu'un joueur par case, mais on sait jamais
+                map[x, y].Entities = map[x, y].Entities.Where(e => !(e is Adventurer a && a.Name == command.PlayerName)).ToArray();
+                map.AddPlayer(nextPos.X, nextPos.Y, player);
+            }
+
             return map;
         }
 
         private static Map Execute(ChangePlayerDirectionCommand command, Map map)
         {
             if (map == null) throw new ArgumentNullException(nameof(map));
+
+            var (player, x, y) = map.FindAdventurer(command.PlayerName);
+
+            if (player == null) throw new InvalidOperationException("Cannot change direction an inexisting player");
+
+            var nextDir = player.Direction.Turn(command.Turn);
+
             return map;
         }
     }

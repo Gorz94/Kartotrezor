@@ -25,7 +25,7 @@ namespace Kartotest.Tests.Parser
 
             var map = new MapExecutor().ExecuteMap(command);
 
-            map.Should().BeEquivalentTo(new Map(w, h) { Slots = Enumerable.Range(0, w * h).Select(_ => new MapSlot()).ToArray() });
+            map.Should().BeEquivalentTo(new Map(w, h) { Slots = Enumerable.Range(0, w * h).Select(i => new MapSlot(i / w, i % h)).ToArray() });
         }
 
         [Theory]

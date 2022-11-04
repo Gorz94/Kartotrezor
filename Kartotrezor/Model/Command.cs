@@ -1,4 +1,5 @@
-﻿using Kartotrezor.Model.Entities;
+﻿using Kartotrezor.Entities;
+using Kartotrezor.Model.Entities;
 using Kartotrezor.Utils;
 
 namespace Kartotrezor.Model
