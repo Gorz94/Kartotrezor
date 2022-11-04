@@ -3,10 +3,7 @@ using Kartotrezor.Utils;
 
 namespace Kartotrezor.Model
 {
-    public abstract class Command
-    {
-        public abstract Map Execute(Map map);
-    }
+    public abstract class Command { }
 
     public class InitMapCommand : Command
     {
@@ -19,14 +16,6 @@ namespace Kartotrezor.Model
         public int Width { get; set; }
 
         public int Height { get; set; }
-
-        public override Map Execute(Map map)
-        {
-            if (map != null) throw new InvalidOperationException("The map can only be initiated once.");
-
-            // Faire le taff
-            return map;
-        }
     }
 
     public class LevelCommand : Command
@@ -45,11 +34,6 @@ namespace Kartotrezor.Model
         public int Y { get; set; }
 
         public Level Level { get; set; }
-
-        public override Map Execute(Map map)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class SetTreasureCommand : Command
@@ -68,11 +52,6 @@ namespace Kartotrezor.Model
         public int Y { get; set; }
 
         public Treasure Treasure { get; set; }
-
-        public override Map Execute(Map map)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class InitPlayerCommand : Command
@@ -94,11 +73,6 @@ namespace Kartotrezor.Model
         public int Y { set; get; }
 
         public Direction Direction { get; set; }
-
-        public override Map Execute(Map map)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class MovePlayerForwardCommand : Command
@@ -109,11 +83,6 @@ namespace Kartotrezor.Model
         }
 
         public string PlayerName { get; set; }
-
-        public override Map Execute(Map map)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class ChangePlayerDirectionCommand : Command
@@ -127,10 +96,5 @@ namespace Kartotrezor.Model
         public string PlayerName { get; set; }
 
         public Turn Turn { get; set; }
-
-        public override Map Execute(Map map)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
