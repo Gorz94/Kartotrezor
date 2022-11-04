@@ -18,13 +18,13 @@
 
         public MapSlot[] Slots { get; set; }
 
-        public MapSlot this[int x, int y] => Slots[x * Width + y];
+        public MapSlot this[int x, int y] => Slots[y * Width + x];
     }
 
     public class MapSlot
     {
-        public IEnumerable<Entity> Entities { get; set; }
+        public IEnumerable<Entity> Entities { get; set; } = Enumerable.Empty<Entity>();
 
-        public Level Level { get; set; }
+        public Level Level { get; set; } = Level.Plain;
     }
 }
