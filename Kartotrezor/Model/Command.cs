@@ -1,4 +1,5 @@
 ﻿using Kartotrezor.Model.Entities;
+using Kartotrezor.Utils;
 
 namespace Kartotrezor.Model
 {
@@ -32,6 +33,8 @@ namespace Kartotrezor.Model
     {
         public LevelCommand(Level level, int x, int y)
         {
+            if (!(x, y).IsPositionValid()) throw new ArgumentException("Treasure pos is not valid");
+
             Level = level;
             X = x;
             Y = y;
@@ -53,7 +56,7 @@ namespace Kartotrezor.Model
     {
         public SetTreasureCommand(int x, int y, int value)
         {
-            if (x <= 0 || y <= 0) throw new ArgumentException("Player is not valid");
+            if (!(x, y).IsPositionValid()) throw new ArgumentException("Player is not valid");
 
             X = x;
             Y = y;
@@ -76,7 +79,7 @@ namespace Kartotrezor.Model
     {
         public InitPlayerCommand(string playerName, Direction dir, int x, int y)
         {
-            if (string.IsNullOrEmpty(playerName) || x <= 0 || y <= 0) throw new ArgumentException("Player is not valid");
+            if (string.IsNullOrEmpty(playerName) || !(x,y).IsPositionValid()) throw new ArgumentException("Player is not valid");
 
             Direction = dir;
             X = x;

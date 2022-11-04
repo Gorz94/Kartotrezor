@@ -31,5 +31,8 @@ namespace Kartotrezor.Utils
             };
 
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> e) => e is null || !e.Any();
+
+        public static bool IsPositionValid(this (int x, int y) pos) 
+            => pos.x >= 0 && pos.y >= 0 && pos.x < Map.MAX_SIZE && pos.y < Map.MAX_SIZE;
     }
 }
