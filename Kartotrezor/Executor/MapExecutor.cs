@@ -9,7 +9,7 @@ namespace Kartotrezor.Executor
 {
     public class MapExecutor
     {
-        public Map ExecuteMap(Command command, Map map = null)
+        public Map ExecuteMap(Command[] command, Map map = null)
         {
             return null;
         }
