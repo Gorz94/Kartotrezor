@@ -23,7 +23,7 @@ namespace Kartotest.Tests.Parser
         }
 
         [Theory]
-        [InlineData("M - 1 - 2", Level.Plain, 1, 2)]
+        [InlineData("M - 1 - 2", Level.Mountain, 1, 2)]
         [InlineData("M - 2 - 2", Level.Mountain, 2, 2)]
         [InlineData("", Level.Mountain, 2, 2, true)]
         public void Parser_parse_level(string line, Level level, int x, int y, bool error = false)
@@ -45,11 +45,12 @@ namespace Kartotest.Tests.Parser
         }
 
         [Theory]
-        [InlineData("M - 1 - 2", 1, 1, 2)]
-        [InlineData("M - 2 - 2", 2, 2, 2)]
-        [InlineData("M - 2 - 3", 99, 2, 3, true)]
+        [InlineData("T - 1 - 1 - 2", 1, 1, 2)]
+        [InlineData("T - 2 - 2 - 2", 2, 2, 2)]
+        [InlineData("T - 2 - 3 - 99", 2, 3, 99)]
+        [InlineData("T - 2 - 3 - 0", 2, 3, 0, true)]
         [InlineData("", 2, 2, 2, true)]
-        public void Parser_parse_setTreasure(string line, int value, int x, int y, bool error = false)
+        public void Parser_parse_setTreasure(string line, int x, int y, int value, bool error = false)
         {
             if (value == 0)
             {
@@ -74,13 +75,16 @@ namespace Kartotest.Tests.Parser
         }
 
         [Theory]
-        [InlineData("T - 1 - 2", "Bernard", Direction.W, 1, 2)]
-        [InlineData("T - 1 - 2", "Bernard", Direction.E, 1, -5)]
-        [InlineData("T - 1 - 2", "Bernard", Direction.W, 0, 2)]
-        [InlineData("T - 2 - 2", "", Direction.W, 2, 2)]
-        [InlineData("T - 2 - 2", null, Direction.W, 2, 2, true)]
+        [InlineData("A - Bernard - 1 - 2 - W - AAAA", "Bernard", Direction.W, 1, 2)]
+        [InlineData("A - Bernard - 1 - 2 - W - AAAA", "Bernard", Direction.E, 1, -5)]
+        [InlineData("A - Bernard - 1 - 2 - W - AAAA", "Bernard", Direction.W, 0, 2)]
+        [InlineData("A - Bernard - 1 - 2 - W - AAAA", "", Direction.W, 2, 2)]
+        [InlineData("A - Bernard - 1 - 2 - W", null, Direction.W, 2, 2)]
+        [InlineData("A - Bernard - 1 - 2 - W", "", Direction.W, 2, 2)]
+        [InlineData("A - Bernard - 1 - W", "", Direction.W, 2, 2, true)]
+        [InlineData("Oksekour", null, Direction.W, 2, 2)]
         [InlineData("", "Mehdi", Direction.W, 2, 2, true)]
-        public void Parser_parse_setTreasureCommand(string line, string name, Direction direction, int x, int y, bool error = false)
+        public void Parser_parse_setInitPlayer(string line, string name, Direction direction, int x, int y, bool error = false)
         {
             if (string.IsNullOrEmpty(name) || x <= 0 || y <= 0)
             {
@@ -99,9 +103,20 @@ namespace Kartotest.Tests.Parser
             }
 
             var commands = parser.ParseCommands(new[] { line });
-            commands.Should().HaveCount(1);
 
             commands.First().Should().BeEquivalentTo(command);
+        }
+
+        [Fact]
+        public void Coucou()
+        {
+            var commands = "C - 1 - 5;M - 5 - 8; T - 8 - 5 - 4;A - Mehdi - 5 - 8 - S - AADAAGA";
+
+            var parser = new CommandParser();
+
+            var k = parser.ParseCommands(commands.Split(';'));
+
+            var o = 5;
         }
     }
 }

@@ -11,7 +11,8 @@ namespace Kartotrezor.Model
     {
         public InitMapCommand(int w, int h)
         {
-            
+            Width = w;
+            Height = h; 
         }
 
         public int Width { get; set; }
@@ -31,7 +32,9 @@ namespace Kartotrezor.Model
     {
         public LevelCommand(Level level, int x, int y)
         {
-            
+            Level = level;
+            X = x;
+            Y = y;
         }
 
         public int X { get; set; }
@@ -50,7 +53,11 @@ namespace Kartotrezor.Model
     {
         public SetTreasureCommand(int x, int y, int value)
         {
-            
+            if (x <= 0 || y <= 0) throw new ArgumentException("Player is not valid");
+
+            X = x;
+            Y = y;
+            Treasure = new Treasure(value);
         }
 
         public int X { get; set; }
@@ -69,7 +76,12 @@ namespace Kartotrezor.Model
     {
         public InitPlayerCommand(string playerName, Direction dir, int x, int y)
         {
-            
+            if (string.IsNullOrEmpty(playerName) || x <= 0 || y <= 0) throw new ArgumentException("Player is not valid");
+
+            Direction = dir;
+            X = x;
+            Y = y;
+            PlayerName = playerName;
         }
 
         public string PlayerName { get; set; }
@@ -77,6 +89,8 @@ namespace Kartotrezor.Model
         public int X { set; get; }
 
         public int Y { set; get; }
+
+        public Direction Direction { get; set; }
 
         public override Map Execute(Map map)
         {
@@ -88,7 +102,7 @@ namespace Kartotrezor.Model
     {
         public MovePlayerForwardCommand(string name)
         {
-            
+            PlayerName = name;
         }
 
         public string PlayerName { get; set; }
@@ -101,14 +115,15 @@ namespace Kartotrezor.Model
 
     public class ChangePlayerDirectionCommand : Command
     {
-        public ChangePlayerDirectionCommand(string name, Direction dir)
+        public ChangePlayerDirectionCommand(string name, Turn turn)
         {
-
+            PlayerName = name;
+            Turn = turn;
         }
 
         public string PlayerName { get; set; }
 
-        public Direction Direction { get; set; }
+        public Turn Turn { get; set; }
 
         public override Map Execute(Map map)
         {

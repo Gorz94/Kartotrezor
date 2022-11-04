@@ -72,5 +72,27 @@ namespace Kartotest.Tests.Parser
 
             commands.Length.Should().Be(count + 1);
         }
+
+        [Fact]
+        public void Parse_Player_1()
+        {
+            var lines = new[]
+            {
+                "A - Mehdi - 5 - 6 - W - AADAAG"
+            };
+
+            var commands = new Command[]
+            {
+                new InitPlayerCommand("Mehdi", Direction.W, 5, 6),
+                new MovePlayerForwardCommand("Mehdi"),
+                new MovePlayerForwardCommand("Mehdi"),
+                new ChangePlayerDirectionCommand("Mehdi", Turn.D),
+                new MovePlayerForwardCommand("Mehdi"),
+                new MovePlayerForwardCommand("Mehdi"),
+                new ChangePlayerDirectionCommand("Mehdi", Turn.G)
+            };
+
+            new CommandParser().ParseCommands(lines).Should().BeEquivalentTo(commands);
+        }
     }
 }
