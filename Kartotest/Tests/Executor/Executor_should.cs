@@ -2,6 +2,7 @@
 using Kartotrezor.Executor;
 using Kartotrezor.Model;
 using Kartotrezor.Model.Entities;
+using Kartotrezor.Utils;
 using System;
 using System.Linq;
 using Xunit;
@@ -55,9 +56,9 @@ namespace Kartotest.Tests.Parser
 
             var map = new Map(2, 2);
 
-            SetLevel(map, 1, 1, Level.Mountain);
-            AddTreasure(map, 0, 1, 2);
-            AddPlayer(map, 1, 0, "Bernard", Direction.S);
+            map.SetLevel(1, 1, Level.Mountain);
+            map.AddTreasure(0, 1, 2);
+            map.AddPlayer(1, 0, "Bernard", Direction.S);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -75,9 +76,9 @@ namespace Kartotest.Tests.Parser
 
             var map = new Map(2, 2);
 
-            SetLevel(map, 1, 1, Level.Mountain);
-            AddTreasure(map, 0, 1, 2);
-            AddPlayer(map, 0, 0, "Bernard", Direction.N);
+            map.SetLevel(1, 1, Level.Mountain);
+            map.AddTreasure(0, 1, 2);
+            map.AddPlayer(0, 0, "Bernard", Direction.N);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -95,9 +96,9 @@ namespace Kartotest.Tests.Parser
 
             var map = new Map(2, 2);
 
-            SetLevel(map, 1, 1, Level.Mountain);
-            AddTreasure(map, 0, 1, 2);
-            AddPlayer(map, 1, 0, "Bernard", Direction.S);
+            map.SetLevel(1, 1, Level.Mountain);
+            map.AddTreasure(0, 1, 2);
+            map.AddPlayer(1, 0, "Bernard", Direction.S);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -114,7 +115,7 @@ namespace Kartotest.Tests.Parser
 
             var map = new Map(1, 2);
 
-            AddPlayer(map, 0, 1, "Bernard", Direction.E);
+            map.AddPlayer(0, 1, "Bernard", Direction.E);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -131,8 +132,8 @@ namespace Kartotest.Tests.Parser
 
             var map = new Map(1, 2);
 
-            AddTreasure(map, 0, 1, 1);
-            AddPlayer(map, 0, 1, "Bernard", Direction.E);
+            map.AddTreasure(0, 1, 1);
+            map.AddPlayer(0, 1, "Bernard", Direction.E);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -149,24 +150,9 @@ namespace Kartotest.Tests.Parser
 
             var map = new Map(1, 2);
 
-            AddPlayer(map, 0, 1, "Bernard", Direction.E);
+            map.AddPlayer(0, 1, "Bernard", Direction.E);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
-        }
-
-        private void AddPlayer(Map map, int x, int y, string name, Direction dir)
-        {
-            map[x, y].Entities = map[x, y].Entities.Concat(new Entity[] { new Adventurer(name, dir) });
-        }
-
-        private void AddTreasure(Map map, int x, int y, int count)
-        {
-            map[x, y].Entities = map[x, y].Entities.Concat(new Entity[] { new Treasure(count) });
-        }
-
-        private void SetLevel(Map map, int x, int y, Level level)
-        {
-            map[x, y].Level = level;
         }
     }
 }
