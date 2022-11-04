@@ -17,6 +17,8 @@
         public int Height { get; set; }
 
         public MapSlot[] Slots { get; set; }
+
+        public MapSlot this[int x, int y] => Slots[x * Width + y];
     }
 
     public class MapSlot

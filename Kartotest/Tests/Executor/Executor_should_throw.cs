@@ -71,7 +71,7 @@ namespace Kartotest.Tests.Parser
                 new LevelCommand(Level.Plain, 1, 5)
             };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command, new Map(1, 1)));
+            Assert.Throws<ArgumentException>(() => new MapExecutor().ExecuteMap(command, new Map(1, 1)));
         }
 
         [Fact]
@@ -91,7 +91,7 @@ namespace Kartotest.Tests.Parser
                 new LevelCommand(Level.Mountain, 1, 5) 
             };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command));
+            Assert.Throws<ArgumentException>(() => new MapExecutor().ExecuteMap(command));
         }
 
         [Fact]
@@ -103,7 +103,7 @@ namespace Kartotest.Tests.Parser
                 new SetTreasureCommand(1, 1, 5)
             };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command));
+            Assert.Throws<ArgumentException>(() => new MapExecutor().ExecuteMap(command));
         }
     }
 }
