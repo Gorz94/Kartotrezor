@@ -20,6 +20,14 @@ namespace Kartotest.Tests.Parser
         }
 
         [Fact]
+        public void Executor_should_ThrowsNull()
+        {
+            var command = new Command[] { null };
+
+            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command));
+        }
+
+        [Fact]
         public void Executor_should_InitOnce_1()
         {
             var command = new[]
@@ -27,7 +35,7 @@ namespace Kartotest.Tests.Parser
                new InitMapCommand(1, 1)
             };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command, new Map()));
+            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command, new Map(1, 1)));
         }
 
         [Fact]
@@ -63,7 +71,7 @@ namespace Kartotest.Tests.Parser
                 new LevelCommand(Level.Plain, 1, 5)
             };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command, new Map()));
+            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command, new Map(1, 1)));
         }
 
         [Fact]

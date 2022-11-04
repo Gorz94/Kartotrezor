@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Kartotrezor.Model
+﻿namespace Kartotrezor.Model
 {
     public class Map
     {
+        public const int MAX_SIZE = 12;
 
+        public Map(int w, int h)
+        {
+            
+        }
+
+        public int Width { get; set; }
+
+        public int Height { get; set; }
+
+        public MapSlot[] Slots { get; set; }
     }
 
     public class MapSlot
