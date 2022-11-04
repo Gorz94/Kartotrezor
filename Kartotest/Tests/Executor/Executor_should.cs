@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Kartotrezor.Executor;
 using Kartotrezor.Model;
-using System;
 using System.Linq;
 using Xunit;
 

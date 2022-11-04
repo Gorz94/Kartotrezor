@@ -29,5 +29,7 @@ namespace Kartotrezor.Utils
                 "M" => Level.Mountain,
                 _ => Level.Plain
             };
+
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> e) => e is null || !e.Any();
     }
 }
