@@ -6,7 +6,9 @@
 
         public Map(int w, int h)
         {
-            
+            Width = w;
+            Height = h;
+            Slots = Enumerable.Range(0, w * h).Select(_ => new MapSlot()).ToArray();
         }
 
         public int Width { get; set; }
