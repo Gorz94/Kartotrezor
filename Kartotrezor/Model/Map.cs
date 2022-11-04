@@ -6,6 +6,7 @@
 
         public Map(int w, int h)
         {
+            if (w <= 0 || h <= 0 || w > MAX_SIZE || h > MAX_SIZE) throw new ArgumentException($"Cannot create map with {w}x{h}");
             Width = w;
             Height = h;
             Slots = Enumerable.Range(0, w * h).Select(_ => new MapSlot()).ToArray();
