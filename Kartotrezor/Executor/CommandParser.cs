@@ -25,7 +25,7 @@ namespace Kartotrezor.Executor
         {
             string[] split = line.Split(new[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries).ToArray() ?? new string[0];
 
-            if (split.Length == 0 || split.Length != _mapLength[split[0]]) throw new ArgumentException(nameof(line));
+            if (split.Length == 0 || split.Length != _mapLength[split[0]]) throw new ArgumentException(line);
 
             switch (split[0])
             {
@@ -33,7 +33,7 @@ namespace Kartotrezor.Executor
                 case "M": return ToList(ParseLevel(split));
                 case "T": return ToList(ParseTreasure(split));
                 case "C": return ToList(ParseInitMap(split));
-                default: throw new ArgumentException(nameof(line));
+                default: throw new ArgumentException(line);
             }
 
             Command[] ToList(Command c) => new[] { c };
