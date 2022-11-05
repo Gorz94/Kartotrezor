@@ -25,6 +25,23 @@ namespace Kartotest.Tests.Parser
             new CommandParser().ParseCommands(lines).Should().BeEquivalentTo(command);
         }
 
+        [Fact]
+        public void Parse__should_avoid_comments()
+        {
+            var command = new[]
+            {
+               new InitMapCommand(1, 1)
+            };
+
+            var lines = new[]
+            {
+                "# Hello, this is a comment",
+                "C - 1 - 1"
+            };
+
+            new CommandParser().ParseCommands(lines).Should().BeEquivalentTo(command);
+        }
+
         [Theory]
         [InlineData("M - 1 - 3", Level.Mountain, 1, 3)]
         [InlineData("M - 1 - 2", Level.Mountain, 1, 2)]
