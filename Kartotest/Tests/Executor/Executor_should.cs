@@ -154,5 +154,43 @@ namespace Kartotest.Tests.Parser
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
+
+        [Fact]
+        public void Execute_should_Execute_TwoAdv()
+        {
+            var commands = new[]
+            {
+                "C - 2 - 2",
+                "A - Bernard - 0 - 0 - E - AA",
+                "A - Michou - 1 - 1 - S - AA"
+            };
+
+            var map = new Map(2, 2);
+
+            map.AddPlayer(0, 1, "Bernard", Direction.E);
+
+            map.AddPlayer(1, 1, "Michou", Direction.S);
+
+            map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
+        }
+
+        [Fact]
+        public void Execute_should_Execute_TwoAdvWalk()
+        {
+            var commands = new[]
+            {
+                "C - 2 - 1",
+                "A - Bernard - 0 - 0 - S - AA",
+                "A - Michou - 1 - 0 - S - AA"
+            };
+
+            var map = new Map(2, 1);
+
+            map.AddPlayer(0, 0, "Bernard", Direction.S);
+
+            map.AddPlayer(1, 1, "Michou", Direction.S);
+
+            map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
+        }
     }
 }
