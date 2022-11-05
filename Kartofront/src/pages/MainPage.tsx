@@ -8,7 +8,7 @@ export const MainPage : React.FC = () => {
 
     return (
         <IonCard>
-            <IonSegment value='once' onIonChange={e => setTab(e.detail.value!)}>
+            <IonSegment value={tab} onIonChange={e => setTab(e.detail.value!)}>
                 <IonSegmentButton value='once'>
                     <IonLabel>Simple</IonLabel>
                 </IonSegmentButton>

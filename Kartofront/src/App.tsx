@@ -22,11 +22,11 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-setupIonicReact();
-
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { MainPage } from './pages/MainPage';
+
+setupIonicReact();
 
 const App: React.FC = () => (
   <Provider store={store}>

@@ -19,5 +19,5 @@ export const computeMap = async (command: string) : Promise<{map: Map, error: st
 }
 
 const split = (command: string) : string[] => {
-    return command.split('\r\n');
+    return command.split('\n');
 }
