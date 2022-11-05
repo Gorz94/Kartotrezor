@@ -1,5 +1,6 @@
 ﻿using Kartotrezor.Back.Model;
 using Kartotrezor.Back.Services;
+using Kartotrezor.Back.Utils;
 using Kartotrezor.Executor;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +29,7 @@ namespace Kartotrezor.Back.Controllers
                 var commands = _parser.ParseCommands(request.Command);
                 var map = _executor.ExecuteMap(commands);
 
-                return new ComputeResponse { Map = map };
+                return new ComputeResponse { Map = map.ToConcrete() };
             } catch (Exception e)
             {
                 return new ComputeResponse { Error = e.Message };
@@ -69,7 +70,7 @@ namespace Kartotrezor.Back.Controllers
                     _cacher.Remove(request.Id);
                 }
 
-                return new ContiuneMapResponse { Finished = finished, Map = newMap };
+                return new ContiuneMapResponse { Finished = finished, Map = newMap.ToConcrete() };
             }
             catch (Exception e)
             {

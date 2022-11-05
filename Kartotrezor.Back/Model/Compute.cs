@@ -9,7 +9,7 @@ namespace Kartotrezor.Back.Model
 
     public class ComputeResponse
     {
-        public Map Map { get; set; }
+        public object Map { get; set; }
 
         public string Error { get; set; }
     }
@@ -39,6 +39,6 @@ namespace Kartotrezor.Back.Model
 
         public string Error { get; set; }
 
-        public Map Map { get; set; }
+        public object Map { get; set; }
     }
 }
