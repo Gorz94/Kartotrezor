@@ -6,6 +6,11 @@ namespace Kartotrezor.Utils
 {
     public static class MapUtils
     {
+        private static IDictionary<Direction, Direction> _nextDirections = new Dictionary<Direction, Direction>
+        {
+            { Direction.N, Direction.E }, { Direction.E, Direction.S }, { Direction.S, Direction.W }, { Direction.W, Direction.N }
+        };
+
         public static void AddPlayer(this Map map, int x, int y, string name, Direction dir)
             => AddPlayer(map, x, y, new Adventurer(name, dir));
 
@@ -52,14 +57,6 @@ namespace Kartotrezor.Utils
         }
 
         public static Direction Turn(this Direction d, Turn t)
-        {
-            var dirs = new[] { Direction.N, Direction.E, Direction.S, Direction.W };
-
-            // Position de la prochaine direction, entre -1 et 4
-            var pos = dirs.Select((k, i) => (k, i)).FirstOrDefault(item => item.k == d).i
-                + t == Model.Entities.Turn.D ? 1 : -1;
-
-            return dirs[pos % dirs.Length];
-        }
+            => t == Model.Entities.Turn.D ? _nextDirections[d] : _nextDirections.FirstOrDefault(k => k.Value == d).Key;
     }
 }

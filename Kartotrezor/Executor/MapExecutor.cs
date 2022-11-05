@@ -122,7 +122,7 @@ namespace Kartotrezor.Executor
 
             if (player == null) throw new InvalidOperationException("Cannot change direction an inexisting player");
 
-            var nextDir = player.Direction.Turn(command.Turn);
+            player.Direction = player.Direction.Turn(command.Turn);
 
             return map;
         }
