@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonGrid, IonLabel, IonTextarea } from "@ionic/react";
+import { IonButton, IonCard, IonContent, IonGrid, IonLabel, IonTextarea } from "@ionic/react";
 import { useState } from "react";
 import { Map } from '../model/Map';
 import { computeMap } from "../redux/services/mapService";
@@ -32,9 +32,11 @@ export const ComputeOnce: React.FC = () => {
 
     return (
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-            <IonTextarea placeholder="Commands ..." autoGrow={true} value={command}
-                onIonChange={e => setCommand(e.detail.value!)} />
-            <IonLabel>{error}</IonLabel>
+            <IonCard>
+                <IonTextarea placeholder="Commands ..." autoGrow={true} value={command}
+                    onIonChange={e => setCommand(e.detail.value!)} style={{minWidth: '500px'}}/>
+                <IonLabel>{error}</IonLabel>
+            </IonCard>
 
             <IonButton onClick={callComputeMap}>
                 <IonLabel>Compute</IonLabel>

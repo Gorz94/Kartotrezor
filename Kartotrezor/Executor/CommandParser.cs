@@ -16,7 +16,7 @@ namespace Kartotrezor.Executor
 
         public Command[] ParseCommands(string[] lines)
         {
-            if (lines.IsNullOrEmpty()) throw new ArgumentException(nameof(lines));
+            if (lines.IsNullOrEmpty()) throw new ArgumentException($"{nameof(lines)} should not be empty");
 
             return lines.Select(l => ParseCommand(l)).SelectMany(k => k).ToArray();
         }
@@ -25,7 +25,7 @@ namespace Kartotrezor.Executor
         {
             string[] split = line.Split(new[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries).ToArray() ?? new string[0];
 
-            if (split.Length == 0 || split.Length != _mapLength[split[0]]) throw new ArgumentException(line);
+            if (split.Length == 0 || split.Length != _mapLength[split[0]]) throw new ArgumentException($"Syntax of command '{line}' is incorrect");
 
             switch (split[0])
             {
@@ -33,7 +33,7 @@ namespace Kartotrezor.Executor
                 case "M": return ToList(ParseLevel(split));
                 case "T": return ToList(ParseTreasure(split));
                 case "C": return ToList(ParseInitMap(split));
-                default: throw new ArgumentException(line);
+                default: throw new ArgumentException($"Syntax of command '{line}' is incorrect");
             }
 
             Command[] ToList(Command c) => new[] { c };
