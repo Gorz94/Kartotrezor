@@ -1,0 +1,7 @@
+{
+  "name": "Kartofront",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

@@ -40,5 +40,7 @@ namespace Kartotrezor.Back.Model
         public string Error { get; set; }
 
         public object Map { get; set; }
+
+        public bool Success { get; set; }
     }
 }

@@ -70,7 +70,7 @@ namespace Kartotrezor.Back.Controllers
                     _cacher.Remove(request.Id);
                 }
 
-                return new ContiuneMapResponse { Finished = finished, Map = newMap.ToConcrete() };
+                return new ContiuneMapResponse { Finished = finished, Map = newMap.ToConcrete(), Success = true };
             }
             catch (Exception e)
             {
