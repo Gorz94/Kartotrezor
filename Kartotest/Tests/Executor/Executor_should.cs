@@ -115,7 +115,7 @@ namespace Kartotest.Tests.Parser
 
             var map = new Map(1, 2);
 
-            map.AddPlayer(0, 1, "Bernard", Direction.S);
+            map.AddPlayer(0, 1, "Bernard", Direction.S, 1);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -133,7 +133,7 @@ namespace Kartotest.Tests.Parser
             var map = new Map(1, 2);
 
             map.AddTreasure(0, 1, 1);
-            map.AddPlayer(0, 1, "Bernard", Direction.S);
+            map.AddPlayer(0, 1, "Bernard", Direction.S, 1);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -150,7 +150,7 @@ namespace Kartotest.Tests.Parser
 
             var map = new Map(1, 2);
 
-            map.AddPlayer(0, 1, "Bernard", Direction.S);
+            map.AddPlayer(0, 1, "Bernard", Direction.S, 2);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }

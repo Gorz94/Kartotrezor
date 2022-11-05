@@ -12,6 +12,8 @@
 
         public string Name { get; set; }
 
+        public int Treasures { get; set; }
+
         public override CollisionResult OnWalkedOn() => CollisionResult.Null;
     }
 

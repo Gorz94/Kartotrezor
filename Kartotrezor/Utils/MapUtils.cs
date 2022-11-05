@@ -11,8 +11,8 @@ namespace Kartotrezor.Utils
             { Direction.N, Direction.E }, { Direction.E, Direction.S }, { Direction.S, Direction.W }, { Direction.W, Direction.N }
         };
 
-        public static void AddPlayer(this Map map, int x, int y, string name, Direction dir)
-            => AddPlayer(map, x, y, new Adventurer(name, dir));
+        public static void AddPlayer(this Map map, int x, int y, string name, Direction dir, int treasures = 0)
+            => AddPlayer(map, x, y, new Adventurer(name, dir) { Treasures = treasures });
 
         public static void AddPlayer(this Map map, int x, int y, Adventurer adv)
         {
