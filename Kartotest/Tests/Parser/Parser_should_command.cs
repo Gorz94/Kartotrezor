@@ -95,5 +95,31 @@ namespace Kartotest.Tests.Parser
 
             new CommandParser().ParseCommands(lines).Cast<object>().Should().BeEquivalentTo(commands);
         }
+
+        [Fact]
+        public void Parse_Player_2()
+        {
+            var lines = new[]
+            {
+                "A - Mehdi - 5 - 6 - W - AADAAG",
+                "A - Louis - 1 - 1 - S - A"
+            };
+
+            var commands = new Command[]
+            {
+                new InitPlayerCommand("Mehdi", Direction.W, 5, 6),
+                new MovePlayerForwardCommand("Mehdi"),
+                new MovePlayerForwardCommand("Mehdi"),
+                new ChangePlayerDirectionCommand("Mehdi", Turn.D),
+                new MovePlayerForwardCommand("Mehdi"),
+                new MovePlayerForwardCommand("Mehdi"),
+                new ChangePlayerDirectionCommand("Mehdi", Turn.G),
+
+                new InitPlayerCommand("Louis", Direction.S, 1, 1),
+                new MovePlayerForwardCommand("Louis"),
+            }.Cast<object>();
+
+            new CommandParser().ParseCommands(lines).Cast<object>().Should().BeEquivalentTo(commands);
+        }
     }
 }

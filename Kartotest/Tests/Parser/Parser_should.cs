@@ -106,17 +106,5 @@ namespace Kartotest.Tests.Parser
 
             commands.First().Should().BeEquivalentTo(command);
         }
-
-        [Fact]
-        public void Coucou()
-        {
-            var commands = "C - 1 - 5;M - 5 - 8; T - 8 - 5 - 4;A - Mehdi - 5 - 8 - S - AADAAGA";
-
-            var parser = new CommandParser();
-
-            var k = parser.ParseCommands(commands.Split(';'));
-
-            var o = 5;
-        }
     }
 }
