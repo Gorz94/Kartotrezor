@@ -167,7 +167,7 @@ namespace Kartotest.Tests.Parser
 
             var map = new Map(2, 2);
 
-            map.AddPlayer(0, 1, "Bernard", Direction.E);
+            map.AddPlayer(1, 0, "Bernard", Direction.E);
 
             map.AddPlayer(1, 1, "Michou", Direction.S);
 
@@ -188,7 +188,7 @@ namespace Kartotest.Tests.Parser
 
             map.AddPlayer(0, 0, "Bernard", Direction.S);
 
-            map.AddPlayer(1, 1, "Michou", Direction.S);
+            map.AddPlayer(1, 0, "Michou", Direction.S);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }

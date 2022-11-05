@@ -52,7 +52,8 @@ namespace Kartotrezor.Utils
                 _ => throw new NotSupportedException($"Direction {dir} is not supported")
             };
 
-            return (x2, y2).IsPositionValid() && x2 < map.Width && y2 < map.Height && map[x2, y2].Level != Level.Mountain ?
+            return (x2, y2).IsPositionValid() && x2 < map.Width && y2 < map.Height && map[x2, y2].Level != Level.Mountain
+                ?
                 (x2, y2) : (x, y);
         }
 

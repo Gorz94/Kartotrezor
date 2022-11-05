@@ -22,13 +22,16 @@ namespace Kartotrezor.Executor
             { typeof(ChangePlayerDirectionCommand), 4 }
         };
 
+        private IList<Type> _resetPriorities = new List<Type>() { typeof(InitPlayerCommand) };
+
         public Map ExecuteMap(Command[] command, Map map = null)
         {
             if (command.IsNullOrEmpty() || command.Any(c => c is null)) throw new ArgumentNullException(nameof(command));
 
-            var order = command.Select(c => _commandPriority[c.GetType()]);
+            var order = command.Select(c => (priority: _commandPriority[c.GetType()], command: c));
 
-            if (order.Zip(order.Skip(1), (prev, next) => next - prev).Any(k => k < 0))
+            if (order.Zip(order.Skip(1), (prev, next) => (next: next.command, diff: next.priority - prev.priority))
+                     .Any(k => k.diff < 0 && !_resetPriorities.Contains(k.next.GetType())))
                 throw new ArgumentException("Your command is not in the correct order");
 
             try
@@ -104,7 +107,7 @@ namespace Kartotrezor.Executor
 
             var nextPos = map.CalculateNextPos(x, y, player.Direction);
 
-            if (nextPos != (x, y))
+            if (nextPos != (x, y) && !map[nextPos.X, nextPos.Y].Entities.Any(e => e is Adventurer))
             {
                 // Il n'y a qu'un joueur par case, mais on sait jamais
                 map[x, y].Entities = map[x, y].Entities.Where(e => !(e is Adventurer a && a.Name == command.PlayerName)).ToArray();
