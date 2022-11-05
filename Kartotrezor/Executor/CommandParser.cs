@@ -18,7 +18,7 @@ namespace Kartotrezor.Executor
         {
             if (lines.IsNullOrEmpty()) throw new ArgumentException($"{nameof(lines)} should not be empty");
 
-            return lines.Select(l => ParseCommand(l)).SelectMany(k => k).ToArray();
+            return lines.Where(l => !(string.IsNullOrEmpty(l) ? string.Empty : l).StartsWith("#")).Select(l => ParseCommand(l)).SelectMany(k => k).ToArray();
         }
 
         private Command[] ParseCommand(string line)
