@@ -114,6 +114,8 @@ namespace Kartotrezor.Executor
 
                 var remainingEntities = map[nextPos.X, nextPos.Y].Entities.ToArray();
 
+                player.Treasures += remainingEntities.Any(t => t is Treasure) ? 1 : 0;
+
                 // Devrait être ailleurs ...
                 if (remainingEntities.Any())
                     map[nextPos.X, nextPos.Y].Entities = remainingEntities.Select(e => (Entity: e, Result: e.OnWalkedOn()))
