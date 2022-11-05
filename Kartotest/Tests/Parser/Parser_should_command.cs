@@ -26,9 +26,9 @@ namespace Kartotest.Tests.Parser
         }
 
         [Theory]
-        [InlineData("M - 1 - 5", Level.Mountain, 1, 5)]
-        [InlineData("M - 1 - 55", Level.Mountain, 1, 55)]
-        [InlineData("M - 15 - 50", Level.Mountain, 15, 50)]
+        [InlineData("M - 1 - 3", Level.Mountain, 1, 3)]
+        [InlineData("M - 1 - 2", Level.Mountain, 1, 2)]
+        [InlineData("M - 2 - 4", Level.Mountain, 2, 4)]
         public void Parse_Level(string line, Level level, int x, int y)
         {
             var command = new[]
@@ -43,8 +43,8 @@ namespace Kartotest.Tests.Parser
 
         [Theory]
         [InlineData("T - 1 - 5 - 4", 1, 5, 4)]
-        [InlineData("T - 1 - 55 - 99", 1, 55, 99)]
-        [InlineData("T - 15 - 50 - 56", 15, 50, 56)]
+        [InlineData("T - 1 - 5 - 99", 1, 5, 99)]
+        [InlineData("T - 2 - 5 - 56", 2, 5, 56)]
         public void Parse_Treasure(string line, int x, int y, int value)
         {
             var command = new[]

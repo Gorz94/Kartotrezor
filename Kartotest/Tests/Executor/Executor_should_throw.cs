@@ -16,7 +16,7 @@ namespace Kartotest.Tests.Parser
                new InitMapCommand(1, 1)
             };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command));
+            Assert.Throws<InvalidOperationException>(() => new MapExecutor().ExecuteMap(command));
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace Kartotest.Tests.Parser
         {
             var command = new Command[] { null };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command));
+            Assert.Throws<ArgumentNullException>(() => new MapExecutor().ExecuteMap(command));
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace Kartotest.Tests.Parser
                new InitMapCommand(1, 1)
             };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command, new Map(1, 1)));
+            Assert.Throws<InvalidOperationException>(() => new MapExecutor().ExecuteMap(command, new Map(1, 1)));
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace Kartotest.Tests.Parser
         {
             var command = new Command[0];
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command));
+            Assert.Throws<ArgumentNullException>(() => new MapExecutor().ExecuteMap(command));
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace Kartotest.Tests.Parser
         {
             var command = new[] { new LevelCommand(Level.Mountain, 1, 1) };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command));
+            Assert.Throws<InvalidOperationException>(() => new MapExecutor().ExecuteMap(command));
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace Kartotest.Tests.Parser
         {
             var command = new[] { new SetTreasureCommand(1, 1, 5) };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command));
+            Assert.Throws<InvalidOperationException>(() => new MapExecutor().ExecuteMap(command));
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace Kartotest.Tests.Parser
         {
             var command = new[] { new InitPlayerCommand("Bernard", Kartotrezor.Model.Entities.Direction.S, 1, 1) };
 
-            Assert.Throws<Exception>(() => new MapExecutor().ExecuteMap(command));
+            Assert.Throws<InvalidOperationException>(() => new MapExecutor().ExecuteMap(command));
         }
 
         [Fact]

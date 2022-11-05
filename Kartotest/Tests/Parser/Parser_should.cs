@@ -77,7 +77,7 @@ namespace Kartotest.Tests.Parser
         [Theory]
         [InlineData("A - Bernard - 1 - 2 - W - AAAA", "Bernard", Direction.W, 1, 2)]
         [InlineData("A - Bernard - 1 - 2 - W - AAAA", "Bernard", Direction.E, 1, -5)]
-        [InlineData("A - Bernard - 1 - 2 - W - AAAA", "Bernard", Direction.W, 0, 2)]
+        [InlineData("A - Bernard - 1 - 2 - W - AAAA", "Bernard", Direction.W, 1, 2)]
         [InlineData("A - Bernard - 1 - 2 - W - AAAA", "", Direction.W, 2, 2)]
         [InlineData("A - Bernard - 1 - 2 - W", null, Direction.W, 2, 2)]
         [InlineData("A - Bernard - 1 - 2 - W", "", Direction.W, 2, 2)]
@@ -86,7 +86,7 @@ namespace Kartotest.Tests.Parser
         [InlineData("", "Mehdi", Direction.W, 2, 2, true)]
         public void Parser_parse_setInitPlayer(string line, string name, Direction direction, int x, int y, bool error = false)
         {
-            if (string.IsNullOrEmpty(name) || x <= 0 || y <= 0)
+            if (string.IsNullOrEmpty(name) || x < 0 || y < 0)
             {
                 Assert.Throws<ArgumentException>(() => new InitPlayerCommand(name, direction, x, y));
                 return;
