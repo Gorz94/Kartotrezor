@@ -109,11 +109,11 @@ namespace Kartotrezor.Executor
                 // Il n'y a qu'un joueur par case, mais on sait jamais
                 map[x, y].Entities = map[x, y].Entities.Where(e => !(e is Adventurer a && a.Name == command.PlayerName)).ToArray();
 
-                var remainingEntities = map[x, y].Entities.ToArray();
+                var remainingEntities = map[nextPos.X, nextPos.Y].Entities.ToArray();
 
                 // Devrait être ailleurs ...
                 if (remainingEntities.Any())
-                    map[x, y].Entities = remainingEntities.Select(e => (Entity: e, Result: e.OnWalkedOn()))
+                    map[nextPos.X, nextPos.Y].Entities = remainingEntities.Select(e => (Entity: e, Result: e.OnWalkedOn()))
                         .Where(o => o.Result != CollisionResult.NeedDeletion)
                                                     .Select(o => o.Entity).ToArray();
 

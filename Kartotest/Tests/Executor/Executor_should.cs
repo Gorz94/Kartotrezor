@@ -25,7 +25,7 @@ namespace Kartotest.Tests.Parser
 
             var map = new MapExecutor().ExecuteMap(command);
 
-            map.Should().BeEquivalentTo(new Map(w, h) { Slots = Enumerable.Range(0, w * h).Select(i => new MapSlot(i / w, i % h)).ToArray() });
+            map.Should().BeEquivalentTo(new Map(w, h) { Slots = Enumerable.Range(0, w * h).Select(i => new MapSlot(i % w, i / w)).ToArray() });
         }
 
         [Theory]
@@ -50,15 +50,15 @@ namespace Kartotest.Tests.Parser
             {
                 "C - 2 - 2",
                 "M - 1 - 1",
-                "T - 0 - 1 - 2",
+                "T - 1 - 0 - 2",
                 "A - Bernard - 0 - 0 - S - AA"
             };
 
             var map = new Map(2, 2);
 
             map.SetLevel(1, 1, Level.Mountain);
-            map.AddTreasure(0, 1, 2);
-            map.AddPlayer(1, 0, "Bernard", Direction.S);
+            map.AddTreasure(1, 0, 2);
+            map.AddPlayer(0, 1, "Bernard", Direction.S);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -77,7 +77,7 @@ namespace Kartotest.Tests.Parser
             var map = new Map(2, 2);
 
             map.SetLevel(1, 1, Level.Mountain);
-            map.AddTreasure(0, 1, 2);
+            map.AddTreasure(0, 1, 1);
             map.AddPlayer(0, 0, "Bernard", Direction.N);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
@@ -90,15 +90,15 @@ namespace Kartotest.Tests.Parser
             {
                 "C - 2 - 2",
                 "M - 1 - 1",
-                "T - 0 - 1 - 2",
+                "T - 1 - 0 - 2",
                 "A - Bernard - 0 - 0 - S - AAAAAAAAAAAAAGAAAAAAAAAAA"
             };
 
             var map = new Map(2, 2);
 
             map.SetLevel(1, 1, Level.Mountain);
-            map.AddTreasure(0, 1, 2);
-            map.AddPlayer(1, 0, "Bernard", Direction.S);
+            map.AddTreasure(1, 0, 2);
+            map.AddPlayer(0, 1, "Bernard", Direction.E);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -110,12 +110,12 @@ namespace Kartotest.Tests.Parser
             {
                 "C - 1 - 2",
                 "T - 0 - 1 - 1",
-                "A - Bernard - 0 - 0 - E - A"
+                "A - Bernard - 0 - 0 - S - A"
             };
 
             var map = new Map(1, 2);
 
-            map.AddPlayer(0, 1, "Bernard", Direction.E);
+            map.AddPlayer(0, 1, "Bernard", Direction.S);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -127,13 +127,13 @@ namespace Kartotest.Tests.Parser
             {
                 "C - 1 - 2",
                 "T - 0 - 1 - 2",
-                "A - Bernard - 0 - 0 - E - A"
+                "A - Bernard - 0 - 0 - S - A"
             };
 
             var map = new Map(1, 2);
 
             map.AddTreasure(0, 1, 1);
-            map.AddPlayer(0, 1, "Bernard", Direction.E);
+            map.AddPlayer(0, 1, "Bernard", Direction.S);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
@@ -145,12 +145,12 @@ namespace Kartotest.Tests.Parser
             {
                 "C - 1 - 2",
                 "T - 0 - 1 - 2",
-                "A - Bernard - 0 - 0 - E - ADDAGGA"
+                "A - Bernard - 0 - 0 - S - ADDAGGA"
             };
 
             var map = new Map(1, 2);
 
-            map.AddPlayer(0, 1, "Bernard", Direction.E);
+            map.AddPlayer(0, 1, "Bernard", Direction.S);
 
             map.Should().BeEquivalentTo(new MapExecutor().ExecuteMap(new CommandParser().ParseCommands(commands)));
         }
