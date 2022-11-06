@@ -6,7 +6,7 @@ namespace Kartotrezor.Utils
 {
     public static class PrintUtils
     {
-        private const int CELL_SIZE = 16;
+        private const int CELL_SIZE = 12;
 
         public static string DrawMap(this Map map)
         {
@@ -32,6 +32,9 @@ namespace Kartotrezor.Utils
                             var tr = slot.Entities.OfType<Treasure>().First();
                             c = $"T({tr.Count})";
                         }
+                    } else if (slot.Level != Level.Plain)
+                    {
+                        c = slot.Level.ToString().First().ToString();
                     }
 
                     s += Center(c);
@@ -68,10 +71,6 @@ namespace Kartotrezor.Utils
         }
 
         private static string Center(string s)
-        {
-            var missing = (CELL_SIZE - s.Length) / 2;
-
-            return s.PadLeft(missing, ' ').PadRight(missing, ' ');  
-        }
+            => s.PadLeft((CELL_SIZE - s.Length) / 2, ' ').PadRight(CELL_SIZE, ' ');  
     }
 }
