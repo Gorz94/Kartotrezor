@@ -6,7 +6,7 @@ export interface TreasureProps {
 
 export const TreasureComponent : React.FC<TreasureProps> = (props) => {
     return (
-        <IonLabel style={{fontSize: '22px', fontWeight: 'bold', color: 'white',
+        <IonLabel style={{fontSize: '16px', fontWeight: 'bold', color: 'white',
             marginLeft: '5px', marginTop: '5px'}}>Treasures: {props.count}</IonLabel>
     );
 }

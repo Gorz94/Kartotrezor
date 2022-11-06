@@ -20,5 +20,5 @@ const createTreasure = (entity: Entity) => {
 
 const createAdventurer = (entity: Entity) => {
     const a = entity.entity as Adventurer;
-    return <AdvComponent name={a.name} direction={a.direction} />
+    return <AdvComponent name={a.name} direction={a.direction} treasures={a.treasures} />
 }

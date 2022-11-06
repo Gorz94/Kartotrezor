@@ -1,7 +1,6 @@
-﻿using Kartotrezor.Model;
-
-namespace Kartotrezor.Back.Model
+﻿namespace Kartotrezor.Back.Model
 {
+    // Tout dans un seul fichier pour faire plus vite
     public class ComputeOnceRequest
     {
         public string[] Command { get; set; }
