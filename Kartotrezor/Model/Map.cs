@@ -1,4 +1,6 @@
-﻿namespace Kartotrezor.Model
+﻿using Kartotrezor.Utils;
+
+namespace Kartotrezor.Model
 {
     public class Map
     {
@@ -19,6 +21,9 @@
         public MapSlot[] Slots { get; set; }
 
         public MapSlot this[int x, int y] => Slots[y * Width + x];
+
+        public override string ToString()
+            => this.PrintMap();
     }
 
     public class MapSlot

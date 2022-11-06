@@ -1,6 +1,4 @@
-﻿using Kartotrezor.Model;
-
-namespace Kartotrezor.Entities
+﻿namespace Kartotrezor.Model.Entities
 {
     public class Treasure : Entity
     {
