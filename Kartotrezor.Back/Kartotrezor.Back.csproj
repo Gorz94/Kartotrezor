@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Kartotrezor\Kartotrezor.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /E /I &quot;$(SolutionDir)$(ProjectName)/wwwroot&quot; &quot;$(TargetDir)/wwwroot&quot;" />
+  </Target>
+
 </Project>
