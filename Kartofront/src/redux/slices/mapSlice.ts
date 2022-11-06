@@ -22,6 +22,7 @@ export const mapSlice = createSlice({
     INIT_MAP: (state: MapState, action: PayloadAction<{command: string}>) => {
       state.id = '';
       state.error = '';
+      state.map = undefined;
     },
     INIT_MAP_RESULT: (state: MapState, action: PayloadAction<{success: boolean, id: string, error: string}>) => {
         if (action.payload.success) {

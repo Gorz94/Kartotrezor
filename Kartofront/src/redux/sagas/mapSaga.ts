@@ -26,7 +26,7 @@ function* continueSaga () {
     try {
         const state: MapState = yield select((s: RootState) => s.map);
 
-        if (!state.finished && state.id.length > 0) {
+        if ((!state.finished || state.map == undefined) && state.id.length > 0) {
             const result: {success: boolean, finished: boolean, map: Map, error: string} = yield call(contiuneMap, state.id);
             yield put(CONTINUE_MAP_RESULT(result));
 

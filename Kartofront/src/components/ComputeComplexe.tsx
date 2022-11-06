@@ -26,7 +26,10 @@ export const ComputeComplexe: React.FC = () => {
             <IonCard>
                 <IonTextarea placeholder="Commands ..." autoGrow={true} value={command}
                     onIonChange={e => setCommand(e.detail.value!)} style={{minWidth: '500px'}}/>
-                <IonLabel>{error}</IonLabel>
+                <IonLabel>
+                    {error}
+                    {state.error}
+                </IonLabel>
             </IonCard>
 
             <IonButton onClick={callComputeMap}>
