@@ -81,6 +81,8 @@ namespace Kartotrezor.Executor
 
             var slot = map[command.X, command.Y];
 
+            if (slot.Level != Level.Plain)
+                throw new InvalidOperationException("Cannot intiate adventurer on a mountain ...");
             if (slot.Entities.Any(e => e is Adventurer))
                 throw new InvalidOperationException("There is already a player !");
             if (map.Slots.SelectMany(s => s.Entities).Any(e => e is Adventurer a && a.Name == command.PlayerName))
